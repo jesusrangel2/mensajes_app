@@ -21,6 +21,7 @@ public class MessageDAO {
                 ps.setString(1, message.getMensaje());
                 ps.setString(2, message.getAutor());
                 ps.executeUpdate();
+                dbCon.close();
                 System.out.println("Add message OK");
             } catch (SQLException e) {
                 System.out.println("Add message FAIL");
@@ -84,7 +85,25 @@ public class MessageDAO {
     }
 
     public static void updateMessageDB(Message message){
-
+        ConectorBD db = new ConectorBD();
+        try{
+            Connection dbCon = db.getConnection();
+            PreparedStatement ps = null;
+            try{
+                String query = "UPDATE mensajes SET mensaje=? WHERE id_mensaje=?;";
+                ps = dbCon.prepareStatement(query);
+                ps.setString(1, message.getMensaje());
+                ps.setInt(2, message.getId());
+                ps.executeUpdate();
+                dbCon.close();
+                System.out.println("Update message OK");
+            } catch (SQLException e) {
+                System.out.println("Update message FAIL");
+                e.printStackTrace();
+            }
+        }catch (Exception e){
+            System.out.println("Could not get de bd conection");
+        }
     }
 
 }
