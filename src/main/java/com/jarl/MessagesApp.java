@@ -15,8 +15,8 @@ public class MessagesApp {
             System.out.println("Aplication Messages");
             System.out.println("1. Create Message");
             System.out.println("2. List Messages");
-            System.out.println("3. Update Message");
-            System.out.println("4. Delete Message");
+            System.out.println("3. Delete Message");
+            System.out.println("4. Update Message");
             System.out.println("5. Exit");
 
             //read option from user

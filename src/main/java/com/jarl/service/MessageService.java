@@ -27,7 +27,11 @@ public class MessageService {
     }
 
     public static void deleteMessage(){
-
+        Scanner sc = new Scanner(System.in);
+        //get info from console
+        System.out.println("Id message to delete");
+        Integer id_message = sc.nextInt();
+        MessageDAO.deleteMessageDB(id_message);
     }
 
     public static void updateMessage(){

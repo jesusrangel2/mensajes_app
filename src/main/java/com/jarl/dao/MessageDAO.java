@@ -62,7 +62,25 @@ public class MessageDAO {
     }
 
     public static void deleteMessageDB(int id){
-
+        ConectorBD db = new ConectorBD();
+        try{
+            Connection dbCon = db.getConnection();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            try{
+                String query = "DELETE FROM mensajes WHERE id_mensaje=?";
+                ps = dbCon.prepareStatement(query);
+                ps.setInt(1, id);
+                ps.executeUpdate();
+                System.out.println("Succesfull delete message");
+                dbCon.close();
+            } catch (SQLException e) {
+                System.out.println("Cant delete the message");
+                e.printStackTrace();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static void updateMessageDB(Message message){
