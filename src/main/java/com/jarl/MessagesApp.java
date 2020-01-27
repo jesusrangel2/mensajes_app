@@ -7,13 +7,10 @@ import java.util.Scanner;
 public class MessagesApp {
 
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
-
         int optionMenu = 0;
 
         do {
-
             System.out.println("----------------------");
             System.out.println("Aplication Messages");
             System.out.println("1. Create Message");
@@ -42,9 +39,7 @@ public class MessagesApp {
                     break;
             }
 
-        } while (optionMenu != 5){
-
-        }
+        } while (optionMenu != 5);
 
     }
 

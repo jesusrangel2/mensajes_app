@@ -10,10 +10,6 @@ public class ConectorBD {
         Connection dbConection = null;
         try {
             dbConection = DriverManager.getConnection("jdbc:mysql://localhost:33060/mensajes_app", "root", "secret");
-
-                System.out.println("conexon established");
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
