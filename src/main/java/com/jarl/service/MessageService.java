@@ -23,7 +23,7 @@ public class MessageService {
     }
 
     public static void getMessages(){
-
+        MessageDAO.getMessagesDB();
     }
 
     public static void deleteMessage(){

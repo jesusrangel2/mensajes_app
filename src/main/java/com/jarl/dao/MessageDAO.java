@@ -5,6 +5,7 @@ import com.jarl.model.Message;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MessageDAO {
@@ -25,6 +26,7 @@ public class MessageDAO {
                 System.out.println("Add message FAIL");
                 e.printStackTrace();
             }
+            dbCon.close();
         }catch (Exception e){
             System.out.println("Could not get de bd conection");
         }
@@ -32,7 +34,31 @@ public class MessageDAO {
     }
 
     public static void getMessagesDB(){
+        ConectorBD db = new ConectorBD();
+        try{
+            Connection dbCon = db.getConnection();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            try{
+                String query = "SELECT * FROM mensajes";
+                ps = dbCon.prepareStatement(query);
+                rs = ps.executeQuery();
+                while (rs.next()){
+                    System.out.println("ID: " + rs.getInt("id_mensaje"));
+                    System.out.println("Autor: " + rs.getString("autor"));
+                    System.out.println("Message: " + rs.getString("mensaje"));
+                    System.out.println("Published at: " + rs.getString("date_publication"));
+                    System.out.println("");
+                }
 
+                dbCon.close();
+            } catch (SQLException e) {
+                System.out.println("Cant list the message");
+                e.printStackTrace();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static void deleteMessageDB(int id){
